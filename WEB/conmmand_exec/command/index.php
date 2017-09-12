@@ -1,11 +1,13 @@
 <?php
+include('waf.php');
 if (isset($_GET['page'])) {
 	$page = $_GET['page'];
 } else {
 	$page = "home";
 }
-$file = "templates/" . $page . ".php";
-assert("strpos('$file', '..') === false") or die("Detected hacking attempt!");
+waf($page);
+$file = "./templates/" . $page . ".php";
+system("php $file") or die("Detected hacking attempt!");
 assert("file_exists('$file')") or die("That file doesn't exist!");
 ?>
 <!DOCTYPE html>
