@@ -1,0 +1,27 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<?php
+echo "<pre>";
+echo "<br><br>";
+echo "<br><br>";
+
+echo "* * * * * * * * * * * * * * * * * * * * * * * * * *<br><br>";
+
+echo "         管理系统只能在本地登陆<br><br>";
+echo "           本系统外部禁止访问<br><br>";
+
+echo "* * * * * * * * * * * * * * * * * * * * * * * * * *<br>";
+echo "</pre>";
+
+if(getenv("REMOTE_ADDR")=='127.0.0.1'||strstr(getenv("HTTP_X_FORWARDED_FOR"),'127.0.0.1')||getenv("HTTP_CLIENT_IP")=='127.0.0.1')
+{
+	echo "nctf{happy_http_headers}";
+}
+else
+{
+	echo "不是本地登陆你还想要flag？";
+}
+?>
+
+</html>
